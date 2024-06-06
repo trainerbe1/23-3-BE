@@ -1,7 +1,7 @@
 {
-  "name": "example-swagger-autogen-using-router",
+  "name": "cookbook",
   "version": "1.0.0",
-  "description": "Example showing the use of the swagger-autogen module with Router.",
+  "description": "Cookbook 2.0",
   "main": "index.js",
   "readmeFilename": "README.md",
   "private": false,
@@ -11,15 +11,11 @@
     "example",
     "router"
   ],
-  "author": {
-    "name": "Davi D. Baltar",
-    "email": "davibaltar.npm@gmail.com"
-  },
   "type": "module",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/davibaltar/example-swagger-autogen-with-router.git"
+    "url": "git+https://github.com/trainerbe1/23-3-BE.git"
   },
   "scripts": {
     "start": "node src/index.js",

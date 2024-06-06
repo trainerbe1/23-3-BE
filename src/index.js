@@ -9,7 +9,7 @@ const app = express()
 
 /* Middlewares */
 app.use(authRouter)
-app.use('/doc', serve, setup(jsonFile))
+app.use('/swagger', serve, setup(jsonFile))
 
 app.listen(3000, () => {
   console.log("Server is running!\nAPI documentation: http://localhost:3000/doc")

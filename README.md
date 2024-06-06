@@ -6,10 +6,16 @@ Install the dependencies:
 $ npm install
 ```
 
-Use the command below to generate the documentation at project startup:
+Use the command below to generate the database:
 
 ```bash
-$ npm run start-gendoc
+$ npx prisma db push
+```
+
+Use the command below to generate the documentation at project startup and run in development:
+
+```bash
+$ npm run dev
 ```
 
 Use the command below to start the project without generating the documentation:
@@ -20,13 +26,4 @@ $ npm start
 
 Run the project and access the documentation at:
 
-[http://localhost:3000/doc](http://localhost:3000/doc)
-
-## Screenshot
-See the result after construction:
-
-![](https://raw.githubusercontent.com/davibaltar/public-store/master/screen-swagger-autogen-using-router.png)
-
-
-## License
-[MIT](LICENSE) License
+[http://localhost:3000/swagger](http://localhost:3000/swagger)

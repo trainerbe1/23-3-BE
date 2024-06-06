@@ -1,0 +1,112 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DB_URL")
+}
+
+model users {
+    id              Int                 @id @default(autoincrement())
+    name            String
+    password        String              @db.Text
+    role            roles               @default(USER)
+    created_at      DateTime            @default(now())
+
+    favourites      favourites[]
+    meal_plans      meal_plans[]
+    shopping_lists  shopping_lists[]
+    sessions        sessions[]
+}
+
+model sessions {
+    id                  Int                 @id @default(autoincrement())
+    token               String
+    created_at          DateTime            @default(now())
+
+    user                users               @relation(fields: [user_id], references: [id])
+    user_id             Int
+}
+
+model shopping_list_items {
+    id                  Int                 @id @default(autoincrement())
+    name                String
+    id_done             Boolean             @default(false)
+    
+    shoping_list        shopping_lists      @relation(fields: [shoping_list_id], references: [id])
+    shoping_list_id     Int
+}
+
+model shopping_lists {
+    id                  Int                 @id @default(autoincrement())
+
+    user                users               @relation(fields: [user_id], references: [id])
+    user_id             Int
+
+    shopping_list_item  shopping_list_items[]
+}
+
+model meal_plans {
+    id              Int         @id @default(autoincrement())
+    date_string     String
+
+    user            users       @relation(fields: [user_id], references: [id])
+    user_id         Int
+
+    recipe          recipes     @relation(fields: [recipe_id], references: [id])
+    recipe_id       Int
+}
+
+model favourites {
+    id              Int         @id @default(autoincrement())
+
+    user            users       @relation(fields: [user_id], references: [id])
+    user_id         Int
+
+    recipe          recipes     @relation(fields: [recipe_id], references: [id])
+    recipe_id       Int
+}
+
+model tags {
+  id        Int         @id @default(autoincrement())
+  name      String
+
+  recipes   recipes[]
+}
+
+model areas {
+  id        Int         @id @default(autoincrement())
+  name      String
+
+  recipes   recipes[]
+}
+
+model categories {
+  id        Int         @id @default(autoincrement())
+  name      String
+
+  recipes   recipes[]
+}
+
+model recipes {
+    id                  Int             @id @default(autoincrement())
+    name                String
+    img_url             String
+    ingredient          String          @db.Text
+    video_url           String
+    instructions        String          @db.Text
+
+    tag                 tags            @relation(fields: [tag_id], references: [id])
+    tag_id              Int
+
+    area                areas           @relation(fields: [area_id], references: [id])
+    area_id             Int
+
+    category            categories      @relation(fields: [category_id], references: [id])
+    category_id         Int
+
+    favourites          favourites[]
+    meal_plans          meal_plans[]
+}
+
+enum roles {
+    USER
+    ADMIN
+}
