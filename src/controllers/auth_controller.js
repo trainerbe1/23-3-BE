@@ -1,8 +1,9 @@
-const express = require('express')
-const router = express.Router()
-const authorize = require('../middlewares/auth')
+import { Router } from "express";
+import isAuthorized from "../middlewares/is_authorized.js";
 
-router.post('/signin', (req, res, next) => {
+const authRouter = Router();
+
+authRouter.post('/auth/signin', (req, res, next) => {
     /* 	#swagger.tags = ['User']
         #swagger.description = 'Endpoint to sign in a specific user' */
 
@@ -18,11 +19,11 @@ router.post('/signin', (req, res, next) => {
     }] */
     res.status(201).json({
         data: [],
-        message: 'Authentication successed'
+        message: 'Authentication success'
     })
 })
 
-router.route('/users/:id').get(authorize, (req, res) => {
+authRouter.route('/auth/users/:id').get(isAuthorized, (req, res) => {
     // #swagger.tags = ['User']
     // #swagger.description = 'Endpoint to get a specific user.' 
     const users = []
@@ -37,4 +38,4 @@ router.route('/users/:id').get(authorize, (req, res) => {
     })
 })
 
-module.exports = router
+export default authRouter;

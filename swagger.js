@@ -1,5 +1,6 @@
-const swaggerAutogen = require('swagger-autogen')()
+import swaggerAutogen from 'swagger-autogen';
 
+const swaggerAutogenApp = swaggerAutogen();
 
 const doc = {
     info: {
@@ -60,6 +61,4 @@ const doc = {
 const outputFile = './swagger-output.json'
 const endpointsFiles = ['./src/index.js']
 
-swaggerAutogen(outputFile, endpointsFiles, doc).then(() => {
-    require('./src/index')           // Your project's root file
-})
+swaggerAutogenApp(outputFile, endpointsFiles, doc);

@@ -1,5 +1,5 @@
 
-module.exports = (req, res, next) => {
+export default function isAuthorized(req, res, next) {
     try {
         // validation...
         next()

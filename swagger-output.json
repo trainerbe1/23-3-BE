@@ -32,53 +32,7 @@
     "application/json"
   ],
   "paths": {
-    "/test-get": {
-      "get": {
-        "tags": [],
-        "description": "",
-        "produces": [
-          "application/json"
-        ],
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          }
-        }
-      }
-    },
-    "/test-post": {
-      "post": {
-        "tags": [],
-        "description": "",
-        "parameters": [],
-        "responses": {
-          "201": {
-            "description": "Created"
-          }
-        }
-      }
-    },
-    "/test-delete/{id}": {
-      "delete": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "204": {
-            "description": "No Content"
-          }
-        }
-      }
-    },
-    "/signin": {
+    "/v1/auth/signin": {
       "post": {
         "tags": [
           "User"
@@ -107,7 +61,7 @@
         ]
       }
     },
-    "/users/{id}": {
+    "/v1/auth/users/{id}": {
       "get": {
         "tags": [
           "User"
@@ -127,46 +81,6 @@
             "schema": {
               "$ref": "#/definitions/User"
             }
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/v2/test-get": {
-      "get": {
-        "tags": [],
-        "description": "Description here...",
-        "parameters": [],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
-          }
-        }
-      }
-    },
-    "/v2/test-delete/{id}": {
-      "delete": {
-        "tags": [],
-        "description": "",
-        "parameters": [
-          {
-            "name": "id",
-            "in": "path",
-            "required": true,
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "401": {
-            "description": "Unauthorized"
           }
         }
       }
