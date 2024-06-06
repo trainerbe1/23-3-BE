@@ -1,4 +1,4 @@
-# example-swagger-autogen-using-router
+# Cookbook 2.0
 
 Install the dependencies:
 
