@@ -209,6 +209,27 @@
           }
         }
       }
+    },
+    "/v1/auth/refresh/{token}": {
+      "post": {
+        "tags": [
+          "Auth"
+        ],
+        "description": "Refresh session",
+        "parameters": [
+          {
+            "name": "token",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
     }
   }
 }

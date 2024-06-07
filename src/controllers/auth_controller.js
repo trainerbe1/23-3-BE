@@ -1,6 +1,6 @@
 import { Router } from "express";
 import isAuthorized from "../middlewares/is_authorized.js";
-import { login, logout, register } from "../services/auth_service.js";
+import { login, logout, refreshAccessToken, register } from "../services/auth_service.js";
 
 const authRouter = Router();
 
@@ -23,6 +23,13 @@ authRouter.post('/auth/login', async (req, res, next) => {
     // #swagger.description = 'Create new session'
 
     return res.send(await login(req, res, next));
+});
+
+authRouter.post('/auth/refresh/:token', async (req, res, next) => {
+    // #swagger.tags = ['Auth']
+    // #swagger.description = 'Refresh session'
+
+    return res.send(await refreshAccessToken(req, res, next));
 });
 
 export default authRouter;

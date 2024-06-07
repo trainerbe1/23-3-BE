@@ -108,3 +108,61 @@ export async function login(req, res, next) {
         return apiResponse(apiMessage.internalServerError);
     }
 }
+
+export async function refreshAccessToken(req, res, next) {
+    try {
+        const checkTokenExist = await prismaClient.sessions.findFirst({
+            where: {
+                token: SHA256(req.params.token).toString()
+            }
+        });
+    
+        if(checkTokenExist == null) {
+            return apiResponse(apiMessage.invalidInput, null, {
+                refreshToken: 'Token doesnt exist'
+            });
+        }
+
+        const checkUserExist = await prismaClient.users.findFirst({
+            where: {
+                id: checkTokenExist.user_id
+            }
+        });
+    
+        if(checkUserExist == null) {
+            return apiResponse(apiMessage.invalidInput, null, {
+                refreshToken: 'User doesnt exist'
+            });
+        }
+    
+        const accessToken = jsonwebtoken.sign({
+            id: checkUserExist.id,
+            username: checkUserExist.username,
+            role: checkUserExist.role
+        }, jwt.secret, {expiresIn: jwt.exp});
+    
+        const refreshToken = uuidv4();
+    
+        await prismaClient.sessions.create({
+            data: {
+                token: SHA256(refreshToken).toString(),
+                user_id: checkUserExist.id
+            }
+        });
+
+        await prismaClient.sessions.delete({
+            where: {
+                id: checkTokenExist.id
+            }
+        });
+    
+        return apiResponse(apiMessage.success, {
+            accessToken,
+            refreshToken,
+            id: checkUserExist.id,
+            username: checkUserExist.username
+        });
+    } catch (error) {
+        return apiResponse(apiMessage.internalServerError);
+    }
+}
