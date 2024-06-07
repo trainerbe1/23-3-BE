@@ -20,6 +20,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node swagger.js && nodemon src/index.js",
+    "setup-recipes": "node setup_recipes.js",
     "swagger": "node swagger.js"
   },
   "dependencies": {

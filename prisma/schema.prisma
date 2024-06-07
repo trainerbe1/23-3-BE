@@ -69,13 +69,6 @@ model favourites {
   recipe_id       Int
 }
 
-model tags {
-  id        Int         @id @default(autoincrement())
-  name      String      @unique
-
-  recipes   recipes[]
-}
-
 model areas {
   id        Int         @id @default(autoincrement())
   name      String      @unique
@@ -98,8 +91,7 @@ model recipes {
   video_url           String
   instructions        String          @db.Text
 
-  tag                 tags            @relation(fields: [tag_id], references: [id])
-  tag_id              Int
+  tags                String?
 
   area                areas           @relation(fields: [area_id], references: [id])
   area_id             Int
