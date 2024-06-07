@@ -18,6 +18,12 @@ Use the command below to generate the ORM:
 $ npx prisma generate
 ```
 
+Use the command below to add the recipes datasets:
+
+```bash
+$ npm run setup-recipe
+```
+
 Use the command below to generate the documentation at project startup and run in development:
 
 ```bash

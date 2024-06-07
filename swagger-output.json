@@ -36,6 +36,44 @@
     "application/json"
   ],
   "paths": {
+    "/v1/shopping-list-item/{id}": {
+      "put": {
+        "tags": [
+          "Shopping List Item"
+        ],
+        "description": "Update a shopping list item",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "isDone": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/v1/shopping-list/recipes/{id}": {
       "post": {
         "tags": [

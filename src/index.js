@@ -5,6 +5,7 @@ import authRoutes from "./routes/auth_routes.js";
 import jsonFile from '../swagger-output.json' assert { type: 'json' };
 import shoppingListRoutes from "./routes/shopping_list_routes.js";
 import appConfig from "./common/app.js";
+import shoppingListItemRoutes from './routes/shopping_list_item_routes.js';
 
 const app = express()
 
@@ -13,6 +14,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* Routes */
+app.use(shoppingListItemRoutes)
 app.use(shoppingListRoutes)
 app.use(authRoutes)
 app.use('/swagger', serve, setup(jsonFile))

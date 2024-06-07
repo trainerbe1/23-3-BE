@@ -9,10 +9,18 @@ export default function isAuthorized(req, res, next) {
             const bearerHeader = req.headers.authorization.split(' ');
 
             if(bearerHeader.length === 2 && bearerHeader[0] === 'Bearer') {
-                const payload = jsonwebtoken.verify(bearerHeader[1], jwt.secret);
-                if(payload) {
-                    res.payload = payload;
-                    return next();
+                try {
+                    const payload = jsonwebtoken.verify(bearerHeader[1], jwt.secret);
+                    if (payload) {
+                        res.payload = payload;
+                        return next();
+                    }
+                } catch (err) {
+                    if (err.name === 'TokenExpiredError') {
+                        return res.send(APIResponse(apiMessage.tokenExpired));
+                    } else {
+                        return res.send(APIResponse(apiMessage.unauthorized));
+                    }
                 }
                 
                 return res.send(APIResponse(apiMessage.unauthorized));
