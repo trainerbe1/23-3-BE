@@ -17,14 +17,18 @@ const doc = {
         {
             "name": "Auth",
             "description": "Authentications"
+        },
+        {
+            "name": "Shopping List",
+            "description": "Shopping List"
         }
     ],
     securityDefinitions: {
         apiKeyAuth:{
             type: "apiKey",
-            in: "header",       // can be "header", "query" or "cookie"
-            name: "X-API-KEY",  // name of the header, query parameter or cookie
-            description: "any description..."
+            in: "header",
+            name: "Authorization",
+            description: "Enter the token with the `Bearer: ` prefix, e.g. 'Bearer abcde12345'"
         }
     },
     definitions: {

@@ -32,10 +32,10 @@ model sessions {
 model shopping_list_items {
   id                  Int                 @id @default(autoincrement())
   name                String
-  id_done             Boolean             @default(false)
+  is_done             Boolean             @default(false)
   
-  shoping_list        shopping_lists      @relation(fields: [shoping_list_id], references: [id])
-  shoping_list_id     Int
+  shopping_list        shopping_lists      @relation(fields: [shopping_list_id], references: [id])
+  shopping_list_id     Int
 }
 
 model shopping_lists {
