@@ -20,7 +20,7 @@
   "scripts": {
     "start": "node src/index.js",
     "dev": "node swagger.js && nodemon src/index.js",
-    "start-gendoc": "node swagger.js"
+    "swagger": "node swagger.js"
   },
   "dependencies": {
     "@prisma/client": "^5.15.0",
