@@ -6,10 +6,12 @@ import jsonFile from '../swagger-output.json' assert { type: 'json' };
 import shoppingListRoutes from "./routes/shopping_list_routes.js";
 import appConfig from "./common/app.js";
 import shoppingListItemRoutes from './routes/shopping_list_item_routes.js';
+import cors from "cors";
 
 const app = express()
 
 /* Middlewares */
+app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 

@@ -79,7 +79,7 @@ export async function login(req, res, next) {
         
         if(!bcrypt.compareSync(req.body.password, userWithUsername.password)) {
             return apiResponse(apiMessage.invalidInput, null, {
-                repeatPassword: 'Password is wrong'
+                password: 'Password is wrong'
             });
         }
     
