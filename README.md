@@ -12,6 +12,12 @@ Use the command below to generate the database:
 $ npx prisma db push
 ```
 
+Use the command below to generate the ORM:
+
+```bash
+$ npx prisma generate
+```
+
 Use the command below to generate the documentation at project startup and run in development:
 
 ```bash

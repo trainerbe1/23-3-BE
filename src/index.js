@@ -5,12 +5,14 @@ import jsonFile from '../swagger-output.json' assert { type: 'json' };
 
 const app = express()
 
-/* Routes */
-
 /* Middlewares */
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+/* Routes */
 app.use(authRouter)
 app.use('/swagger', serve, setup(jsonFile))
 
 app.listen(3000, () => {
-  console.log("Server is running!\nAPI documentation: http://localhost:3000/doc")
+  console.log("Server is running!\nAPI documentation: http://localhost:3000/swagger")
 })

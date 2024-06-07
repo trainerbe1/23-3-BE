@@ -3,9 +3,13 @@ datasource db {
   url      = env("DB_URL")
 }
 
+generator client {
+  provider = "prisma-client-js"
+}
+
 model users {
     id              Int                 @id @default(autoincrement())
-    name            String
+    username        String
     password        String              @db.Text
     role            roles               @default(USER)
     created_at      DateTime            @default(now())
@@ -18,7 +22,7 @@ model users {
 
 model sessions {
     id                  Int                 @id @default(autoincrement())
-    token               String
+    token               String              @db.Text
     created_at          DateTime            @default(now())
 
     user                users               @relation(fields: [user_id], references: [id])
@@ -36,6 +40,7 @@ model shopping_list_items {
 
 model shopping_lists {
     id                  Int                 @id @default(autoincrement())
+    name                String
 
     user                users               @relation(fields: [user_id], references: [id])
     user_id             Int
