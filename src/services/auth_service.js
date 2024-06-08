@@ -102,6 +102,7 @@ export async function login(req, res, next) {
             accessToken,
             refreshToken,
             id: userWithUsername.id,
+            role: userWithUsername.role,
             username: userWithUsername.username
         });
     } catch (error) {
@@ -160,6 +161,7 @@ export async function refreshAccessToken(req, res, next) {
             accessToken,
             refreshToken,
             id: checkUserExist.id,
+            role: checkUserExist.role,
             username: checkUserExist.username
         });
     } catch (error) {
