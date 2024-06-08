@@ -71,3 +71,17 @@ export async function deleteShoppingList(req, res, next) {
         return apiResponse(apiMessage.internalServerError);
     }
 }
+
+export async function getShoppingLists(req, res, next) {
+    try {
+        const shoppingLists = await prismaClient.shopping_lists.findMany({
+            where: {
+                user_id: res.payload.id
+            }
+        });
+
+        return apiResponse(apiMessage.success, shoppingLists);
+    } catch (error) {
+        return apiResponse(apiMessage.internalServerError);
+    }
+}

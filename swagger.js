@@ -19,8 +19,16 @@ const doc = {
             "description": "Authentications"
         },
         {
-            "name": "Shopping List",
-            "description": "Shopping List"
+            "name": "Shopping Lists",
+            "description": "Shopping Lists"
+        },
+        {
+            "name": "Shopping List Items",
+            "description": "Shopping List Items"
+        },
+        {
+            "name": "Recipes",
+            "description": "Recipes"
         }
     ],
     securityDefinitions: {

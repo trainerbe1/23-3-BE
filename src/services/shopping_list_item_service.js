@@ -30,3 +30,17 @@ export async function updateShoppingListItem(req, res, next) {
         return apiResponse(apiMessage.internalServerError);
     }
 }
+
+export async function getShoppingListItems(req, res, next) {
+    try {
+        const shoppingListItem = await prismaClient.shopping_list_items.findMany({
+            where: {
+                shopping_list_id: Number(req.params.id)
+            }
+        });
+
+        return apiResponse(apiMessage.success, shoppingListItem);
+    } catch (error) {
+        return apiResponse(apiMessage.internalServerError);
+    }
+}

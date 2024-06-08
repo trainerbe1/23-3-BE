@@ -13,8 +13,16 @@
       "description": "Authentications"
     },
     {
-      "name": "Shopping List",
-      "description": "Shopping List"
+      "name": "Shopping Lists",
+      "description": "Shopping Lists"
+    },
+    {
+      "name": "Shopping List Items",
+      "description": "Shopping List Items"
+    },
+    {
+      "name": "Recipes",
+      "description": "Recipes"
     }
   ],
   "schemes": [
@@ -36,10 +44,40 @@
     "application/json"
   ],
   "paths": {
-    "/v1/shopping-list-item/{id}": {
+    "/v1/recipes": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "description": "Get recipes",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/shopping-list-items/{id}": {
       "put": {
         "tags": [
-          "Shopping List Item"
+          "Shopping List Items"
         ],
         "description": "Update a shopping list item",
         "parameters": [
@@ -74,10 +112,36 @@
         ]
       }
     },
-    "/v1/shopping-list/recipes/{id}": {
+    "/v1/shopping-list-items/shopping-lists/{id}": {
+      "get": {
+        "tags": [
+          "Shopping List Items"
+        ],
+        "description": "Get shopping list items by shopping list",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/shopping-lists/recipes/{id}": {
       "post": {
         "tags": [
-          "Shopping List"
+          "Shopping Lists"
         ],
         "description": "Add a new shopping list",
         "parameters": [
@@ -100,10 +164,10 @@
         ]
       }
     },
-    "/v1/shopping-list/{id}": {
+    "/v1/shopping-lists/{id}": {
       "delete": {
         "tags": [
-          "Shopping List"
+          "Shopping Lists"
         ],
         "description": "Delete a shopping list",
         "parameters": [
@@ -114,6 +178,24 @@
             "type": "string"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/shopping-lists": {
+      "get": {
+        "tags": [
+          "Shopping Lists"
+        ],
+        "description": "Get shopping lists",
         "responses": {
           "200": {
             "description": "OK"
