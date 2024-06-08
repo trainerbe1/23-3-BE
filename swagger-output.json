@@ -64,7 +64,7 @@
                 "dateString": {
                   "example": "any"
                 },
-                "recipe_id": {
+                "recipeId": {
                   "example": "any"
                 }
               }

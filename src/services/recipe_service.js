@@ -12,13 +12,34 @@ export async function getRecipes(req, res, next) {
             skip: (page - 1) * pageSize,
             take: pageSize,
             include: {
-                category: true
+                category: true,
+                area: true
             }
         });
 
         const totalPages = Math.ceil(await prismaClient.recipes.count() / pageSize);
 
         return apiResponse(apiMessage.success, APIPagingResponse(page, pageSize, totalPages, recipes));
+    } catch (error) {
+        return apiResponse(apiMessage.internalServerError);
+    }
+}
+
+export async function getRecipesByName(req, res, next) {
+    try {
+        const recipes = await prismaClient.recipes.findMany({
+            where: {
+                name: {
+                    contains: req.params.name
+                }
+            },
+            include: {
+                category: true,
+                area: true
+            }
+        });
+
+        return apiResponse(apiMessage.success, recipes);
     } catch (error) {
         return apiResponse(apiMessage.internalServerError);
     }
