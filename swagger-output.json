@@ -23,6 +23,10 @@
     {
       "name": "Recipes",
       "description": "Recipes"
+    },
+    {
+      "name": "Meal Plans",
+      "description": "Meal Plans"
     }
   ],
   "schemes": [
@@ -44,6 +48,89 @@
     "application/json"
   ],
   "paths": {
+    "/v1/meal-plans": {
+      "post": {
+        "tags": [
+          "Meal Plans"
+        ],
+        "description": "Add a meal plan",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "dateString": {
+                  "example": "any"
+                },
+                "recipe_id": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      },
+      "get": {
+        "tags": [
+          "Meal Plans"
+        ],
+        "description": "Get meal plans by logged in user",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/meal-plans/{id}": {
+      "delete": {
+        "tags": [
+          "Meal Plans"
+        ],
+        "description": "Delete a meal plan",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
+    "/v1/meal-plans/date/{date}": {
+      "get": {
+        "tags": [
+          "Meal Plans"
+        ],
+        "description": "Get meal plans by date and logged in user",
+        "parameters": [
+          {
+            "name": "date",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    },
     "/v1/recipes": {
       "get": {
         "tags": [
