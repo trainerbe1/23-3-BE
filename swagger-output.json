@@ -35,6 +35,10 @@
     {
       "name": "Users",
       "description": "Users"
+    },
+    {
+      "name": "Categories",
+      "description": "Categories"
     }
   ],
   "schemes": [
@@ -56,6 +60,24 @@
     "application/json"
   ],
   "paths": {
+    "/v1/categories": {
+      "get": {
+        "tags": [
+          "Categories"
+        ],
+        "description": "Get categories",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/v1/users/{id}": {
       "delete": {
         "tags": [
@@ -209,7 +231,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       },
       "get": {
         "tags": [
@@ -220,7 +247,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/v1/meal-plans/{id}": {
@@ -241,7 +273,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/v1/meal-plans/date/{date}": {
@@ -262,7 +299,12 @@
           "200": {
             "description": "OK"
           }
-        }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
     "/v1/recipes": {

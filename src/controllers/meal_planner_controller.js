@@ -7,6 +7,7 @@ const mealPlannerRouter = Router();
 mealPlannerRouter.post('/meal-plans', isAuthorized, async (req, res, next) => {
     // #swagger.tags = ['Meal Plans']
     // #swagger.description = 'Add a meal plan'
+     // #swagger.security = [{ "apiKeyAuth": [] }]
 
     return res.send(await addMealPlan(req, res, next));
 });
@@ -14,6 +15,7 @@ mealPlannerRouter.post('/meal-plans', isAuthorized, async (req, res, next) => {
 mealPlannerRouter.delete('/meal-plans/:id', isAuthorized, async (req, res, next) => {
     // #swagger.tags = ['Meal Plans']
     // #swagger.description = 'Delete a meal plan'
+     // #swagger.security = [{ "apiKeyAuth": [] }]
 
     return res.send(await deleteMealPlan(req, res, next));
 });
@@ -21,6 +23,7 @@ mealPlannerRouter.delete('/meal-plans/:id', isAuthorized, async (req, res, next)
 mealPlannerRouter.get('/meal-plans', isAuthorized, async (req, res, next) => {
     // #swagger.tags = ['Meal Plans']
     // #swagger.description = 'Get meal plans by logged in user'
+     // #swagger.security = [{ "apiKeyAuth": [] }]
 
     return res.send(await getMealPlans(req, res, next));
 });
@@ -28,6 +31,7 @@ mealPlannerRouter.get('/meal-plans', isAuthorized, async (req, res, next) => {
 mealPlannerRouter.get('/meal-plans/date/:date', isAuthorized, async (req, res, next) => {
     // #swagger.tags = ['Meal Plans']
     // #swagger.description = 'Get meal plans by date and logged in user'
+     // #swagger.security = [{ "apiKeyAuth": [] }]
 
     return res.send(await getMealPlansByDate(req, res, next));
 });

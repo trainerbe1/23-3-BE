@@ -26,6 +26,25 @@ export async function getRecipes(req, res, next) {
     }
 }
 
+export async function getRecipesByCategoryId(req, res, next) {
+    try {
+        const recipes = await prismaClient.recipes.findMany({
+            where: {
+                category_id: Number(req.params.id)
+            },
+            include: {
+                category: true,
+                area: true,
+                favourites: true,
+            }
+        });
+
+        return apiResponse(apiMessage.success, recipes);
+    } catch (error) {
+        return apiResponse(apiMessage.internalServerError);
+    }
+}
+
 export async function getRecipesByName(req, res, next) {
     try {
         const recipes = await prismaClient.recipes.findMany({
