@@ -68,5 +68,5 @@ console.log(`Detected ${recipes.length} Recipes...`);
         }
     }
 
-    console.log(`Setup Finished with ${errors} Errors of ${recipes.length}`);
+    console.log(`Setup Finished with ${errors} Errors`);
 })();

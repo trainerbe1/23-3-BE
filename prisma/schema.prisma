@@ -25,7 +25,7 @@ model sessions {
   token               String              @db.Text
   created_at          DateTime            @default(now())
 
-  user                users               @relation(fields: [user_id], references: [id])
+  user                users               @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id             Int
 }
 
@@ -34,7 +34,7 @@ model shopping_list_items {
   name                String
   is_done             Boolean             @default(false)
   
-  shopping_list        shopping_lists      @relation(fields: [shopping_list_id], references: [id])
+  shopping_list        shopping_lists      @relation(fields: [shopping_list_id], references: [id], onDelete: Cascade)
   shopping_list_id     Int
 }
 
@@ -42,7 +42,7 @@ model shopping_lists {
   id                  Int                 @id @default(autoincrement())
   name                String
 
-  user                users               @relation(fields: [user_id], references: [id])
+  user                users               @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id             Int
 
   shopping_list_item  shopping_list_items[]
@@ -52,20 +52,20 @@ model meal_plans {
   id              Int         @id @default(autoincrement())
   date_string     String
 
-  user            users       @relation(fields: [user_id], references: [id])
+  user            users       @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id         Int
 
-  recipe          recipes     @relation(fields: [recipe_id], references: [id])
+  recipe          recipes     @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id       Int
 }
 
 model favourites {
   id              Int         @id @default(autoincrement())
 
-  user            users       @relation(fields: [user_id], references: [id])
+  user            users       @relation(fields: [user_id], references: [id], onDelete: Cascade)
   user_id         Int
 
-  recipe          recipes     @relation(fields: [recipe_id], references: [id])
+  recipe          recipes     @relation(fields: [recipe_id], references: [id], onDelete: Cascade)
   recipe_id       Int
 }
 
@@ -93,10 +93,10 @@ model recipes {
 
   tags                String?
 
-  area                areas           @relation(fields: [area_id], references: [id])
+  area                areas           @relation(fields: [area_id], references: [id], onDelete: Cascade)
   area_id             Int
 
-  category            categories      @relation(fields: [category_id], references: [id])
+  category            categories      @relation(fields: [category_id], references: [id], onDelete: Cascade)
   category_id         Int
 
   favourites          favourites[]

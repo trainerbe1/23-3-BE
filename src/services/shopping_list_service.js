@@ -23,7 +23,7 @@ export async function addShoppingList(req, res, next) {
             }
         });
 
-        for(const item of recipe.ingredient.split('|')) {
+        for(const item of recipe.ingredient.split('\n')) {
             if(shoppingList != null) {
                 await prismaClient.shopping_list_items.create({
                     data: {
