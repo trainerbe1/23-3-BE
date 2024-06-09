@@ -335,9 +335,84 @@
             "apiKeyAuth": []
           }
         ]
+      },
+      "post": {
+        "tags": [
+          "Recipes"
+        ],
+        "description": "Add a new recipe",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "img_url": {
+                  "example": "any"
+                },
+                "ingredient": {
+                  "example": "any"
+                },
+                "instructions": {
+                  "example": "any"
+                },
+                "name": {
+                  "example": "any"
+                },
+                "video_url": {
+                  "example": "any"
+                },
+                "area_id": {
+                  "example": "any"
+                },
+                "category_id": {
+                  "example": "any"
+                },
+                "tags": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
       }
     },
-    "/v1/recipes/name/{name}": {
+    "/v1/recipes/{id}": {
+      "delete": {
+        "tags": [
+          "Recipes"
+        ],
+        "description": "Delete recipe by id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      },
       "get": {
         "tags": [
           "Recipes"
@@ -345,7 +420,7 @@
         "description": "Get recipes by matching name",
         "parameters": [
           {
-            "name": "name",
+            "name": "id",
             "in": "path",
             "required": true,
             "type": "string"
@@ -363,7 +438,33 @@
         ]
       }
     },
-    "/v1/recipes/{id}": {
+    "/v1/recipes/categories/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "description": "Get recipes by category id",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/recipes/name/{name}": {
       "get": {
         "tags": [
           "Recipes"
@@ -371,7 +472,7 @@
         "description": "Get recipes by matching name",
         "parameters": [
           {
-            "name": "id",
+            "name": "name",
             "in": "path",
             "required": true,
             "type": "string"

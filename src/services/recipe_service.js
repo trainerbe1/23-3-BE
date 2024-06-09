@@ -26,6 +26,47 @@ export async function getRecipes(req, res, next) {
     }
 }
 
+export async function deleteRecipeById(req, res, next) {
+    try {
+        const recipe = await prismaClient.recipes.delete({
+            where: {
+                id: Number(req.params.id)
+            },
+            include: {
+                category: true,
+                area: true,
+                favourites: true,
+            }
+        });
+
+        return apiResponse(apiMessage.success, recipe);
+    } catch (error) {
+        console.error(error);
+        return apiResponse(apiMessage.internalServerError);
+    }
+}
+
+export async function addRecipe(req, res, next) {
+    try {
+        const recipe = await prismaClient.recipes.create({
+            data: {
+                img_url: req.body.img_url,
+                ingredient: req.body.ingredient,
+                instructions: req.body.instructions,
+                name: req.body.name,
+                video_url: req.body.video_url,
+                area_id: req.body.area_id,
+                category_id: req.body.category_id,
+                tags: req.body.tags,
+            }
+        });
+
+        return apiResponse(apiMessage.success, recipe);
+    } catch (error) {
+        return apiResponse(apiMessage.internalServerError);
+    }
+}
+
 export async function getRecipesByCategoryId(req, res, next) {
     try {
         const recipes = await prismaClient.recipes.findMany({
