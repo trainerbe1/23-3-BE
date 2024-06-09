@@ -31,6 +31,10 @@
     {
       "name": "Favourites",
       "description": "Favourites"
+    },
+    {
+      "name": "Users",
+      "description": "Users"
     }
   ],
   "schemes": [
@@ -52,7 +56,63 @@
     "application/json"
   ],
   "paths": {
-    "/v1/favourite": {
+    "/v1/users/{id}": {
+      "delete": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Delete an user",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/users": {
+      "get": {
+        "tags": [
+          "Users"
+        ],
+        "description": "Get users",
+        "parameters": [
+          {
+            "name": "page",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "pageSize",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/favourites/recipes/{id}": {
       "post": {
         "tags": [
           "Favourites"
@@ -60,21 +120,56 @@
         "description": "Add a new favourite",
         "parameters": [
           {
-            "name": "body",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "recipeId": {
-                  "example": "any"
-                },
-                "userId": {
-                  "example": "any"
-                }
-              }
-            }
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
           }
         ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/favourites/{id}": {
+      "delete": {
+        "tags": [
+          "Favourites"
+        ],
+        "description": "Delete a favourite",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/favourites": {
+      "get": {
+        "tags": [
+          "Favourites"
+        ],
+        "description": "Get user favourites",
         "responses": {
           "200": {
             "description": "OK"

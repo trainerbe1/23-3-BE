@@ -10,6 +10,7 @@ import recipeRoutes from "./routes/recipe_routes.js";
 import cors from "cors";
 import mealPlannerRoutes from './routes/meal_planner_routes.js';
 import favouriteRoutes from './routes/favourite_routes.js';
+import userRoutes from './routes/user_routes.js';
 
 const app = express()
 
@@ -19,6 +20,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 /* Routes */
+app.use(userRoutes);
 app.use(favouriteRoutes);
 app.use(mealPlannerRoutes);
 app.use(recipeRoutes);
