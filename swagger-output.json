@@ -27,6 +27,10 @@
     {
       "name": "Meal Plans",
       "description": "Meal Plans"
+    },
+    {
+      "name": "Favourites",
+      "description": "Favourites"
     }
   ],
   "schemes": [
@@ -48,6 +52,41 @@
     "application/json"
   ],
   "paths": {
+    "/v1/favourite": {
+      "post": {
+        "tags": [
+          "Favourites"
+        ],
+        "description": "Add a new favourite",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "recipeId": {
+                  "example": "any"
+                },
+                "userId": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
     "/v1/meal-plans": {
       "post": {
         "tags": [
@@ -146,6 +185,58 @@
           {
             "name": "pageSize",
             "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/recipes/name/{name}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "description": "Get recipes by matching name",
+        "parameters": [
+          {
+            "name": "name",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        },
+        "security": [
+          {
+            "apiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/v1/recipes/{id}": {
+      "get": {
+        "tags": [
+          "Recipes"
+        ],
+        "description": "Get recipes by matching name",
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
             "type": "string"
           }
         ],

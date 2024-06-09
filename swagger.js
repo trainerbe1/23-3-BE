@@ -33,6 +33,10 @@ const doc = {
         {
             "name": "Meal Plans",
             "description": "Meal Plans"
+        },
+        {
+            "name": "Favourites",
+            "description": "Favourites"
         }
     ],
     securityDefinitions: {

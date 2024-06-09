@@ -44,3 +44,31 @@ export async function getRecipesByName(req, res, next) {
         return apiResponse(apiMessage.internalServerError);
     }
 }
+
+export async function getRecipeById(req, res, next) {
+    try {
+        const recipes = await prismaClient.recipes.findFirst({
+            where: {
+                id: Number(req.params.id)
+            },
+            include: {
+                category: true,
+                area: true,
+                favourites: {
+                    include: {
+                        user: {
+                            select: {
+                                id: true
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        return apiResponse(apiMessage.success, recipes);
+    } catch (error) {
+        console.error(error);
+        return apiResponse(apiMessage.internalServerError);
+    }
+}

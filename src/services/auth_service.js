@@ -165,6 +165,7 @@ export async function refreshAccessToken(req, res, next) {
             username: checkUserExist.username
         });
     } catch (error) {
+        console.error(error);
         return apiResponse(apiMessage.internalServerError);
     }
 }
