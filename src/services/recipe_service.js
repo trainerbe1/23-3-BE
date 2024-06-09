@@ -13,7 +13,8 @@ export async function getRecipes(req, res, next) {
             take: pageSize,
             include: {
                 category: true,
-                area: true
+                area: true,
+                favourites: true,
             }
         });
 
@@ -35,7 +36,8 @@ export async function getRecipesByName(req, res, next) {
             },
             include: {
                 category: true,
-                area: true
+                area: true,
+                favourites: true,
             }
         });
 
@@ -54,15 +56,7 @@ export async function getRecipeById(req, res, next) {
             include: {
                 category: true,
                 area: true,
-                favourites: {
-                    include: {
-                        user: {
-                            select: {
-                                id: true
-                            }
-                        }
-                    }
-                }
+                favourites: true
             }
         });
 
