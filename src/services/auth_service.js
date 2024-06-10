@@ -29,7 +29,7 @@ export async function register(req, res, next) {
         
         if(req.body.password.length < 5) {
             return apiResponse(apiMessage.invalidInput, null, {
-                repeatPassword: 'Password must be at least 6 characters'
+                password: 'Password must be at least 6 characters'
             });
         }
     
